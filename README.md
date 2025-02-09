@@ -26,7 +26,7 @@ External ZigBee component for ESPHome.
 * Only end devices
 * Attribute set action and OnValue trigger works only with numeric types
 * Reporting can be enabled, but not configured
-* No control devices like switches ([workaround](https://github.com/JaccovL/zigbee_esphome/discussions/18#discussioncomment-11875376))
+* No control devices like switches ([workaround](https://github.com/luar123/zigbee_esphome/discussions/18#discussioncomment-11875376))
 * Needs esp-idf >=5.1.4
 * Needs esphome >=2024.12
 * scenes not implemented
@@ -40,7 +40,7 @@ External ZigBee component for ESPHome.
 * Coordinator devices
 * Binding config in yaml
 * Reporting config in yaml
-* Control device support like switches ([workaround](https://github.com/JaccovL/zigbee_esphome/discussions/18#discussioncomment-11875376))
+* Control device support like switches ([workaround](https://github.com/luar123/zigbee_esphome/discussions/18#discussioncomment-11875376))
 
 ## Usage
 
