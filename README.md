@@ -148,6 +148,34 @@ time:
           - logger.log: "Tick-tock 10 seconds"
 ```
 
+### Switches
+
+add the needed client clusters, for some switches those can be added by simply adding an endpoint with the correct device id:
+
+```
+endpoints:
+    - num: 4
+      device_type: ON_OFF_SWITCH
+```
+Then look up the correct commands and create a lambda. Toggle command for on_off switch is:
+```
+on_press:
+      then:
+        #- zigbee.report: zb
+        - lambda: |-
+            esp_zb_zcl_on_off_cmd_t cmd_req;
+            cmd_req.zcl_basic_cmd.src_endpoint = 4; // switch endpoint, same as ep definition
+            cmd_req.address_mode = ESP_ZB_APS_ADDR_MODE_DST_ADDR_ENDP_NOT_PRESENT;
+            cmd_req.on_off_cmd_id = ESP_ZB_ZCL_CMD_ON_OFF_TOGGLE_ID; // toggle command
+            esp_zb_lock_acquire(portMAX_DELAY);
+            esp_zb_zcl_on_off_cmd_req(&cmd_req); //send on_off cluster command
+            ESP_LOGI("test", "Send cmd!");
+            esp_zb_lock_release();
+```
+
+You need to bind the on_off cluster to the device you want to control. This can be done through the coordinator.
+
+
 ## Troubleshooting
 * Build errors
   - Try to run `esphome clean <name.ymal>` 
